@@ -136,6 +136,16 @@ public class RecipeBootstrap {
 
         tacosRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.");
 
+        Notes tacoNotes = new Notes();
+        tacoNotes.setRecipeNotes("notes taco");
+        tacosRecipe.setNotes(tacoNotes);
+
+        tacosRecipe.getIngredients().add(new Ingredient("Chili",new BigDecimal(2),tableSpoonUom));
+        tacosRecipe.getIngredients().add(new Ingredient("sugar",new BigDecimal(1),eachUom));
+        tacosRecipe.getIngredients().add(new Ingredient("sour cream",new BigDecimal(1),cupsUom));
+
+        tacosRecipe.getCategories().add(americanCategory);
+
         //add to return list
         recipes.add(tacosRecipe);
 
