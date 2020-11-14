@@ -21,6 +21,13 @@ public class Ingredient {
     private UnitOfMeasure uOom;
 
 
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uOom) {
+        this.description = description;
+        this.amount = amount;
+
+        this.uOom = uOom;
+    }
+
     public Long getId() {
         return id;
     }
