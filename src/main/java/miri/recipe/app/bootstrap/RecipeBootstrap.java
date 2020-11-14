@@ -4,13 +4,17 @@ import miri.recipe.app.domain.*;
 import miri.recipe.app.repositories.CategoryRepository;
 import miri.recipe.app.repositories.RecipeRepository;
 import miri.recipe.app.repositories.UnitOfMeasureRepository;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RecipeBootstrap {
+@Component
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
@@ -20,6 +24,11 @@ public class RecipeBootstrap {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        recipeRepository.saveAll(getRecipes());
     }
 
     private List<Recipe> getRecipes() {
@@ -145,6 +154,7 @@ public class RecipeBootstrap {
         tacosRecipe.getIngredients().add(new Ingredient("sour cream",new BigDecimal(1),cupsUom));
 
         tacosRecipe.getCategories().add(americanCategory);
+        tacosRecipe.getCategories().add(mexicanCategory);
 
         //add to return list
         recipes.add(tacosRecipe);
