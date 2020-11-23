@@ -28,6 +28,10 @@ public class Ingredient {
         this.uOom = uOom;
     }
 
+    public Ingredient(){
+
+    }
+
     public Long getId() {
         return id;
     }
