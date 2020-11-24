@@ -121,10 +121,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
 
 
-        guacRecipe.getIngredients().add(new Ingredient("ripe avocados",new BigDecimal(2),eachUom));
-        guacRecipe.getIngredients().add(new Ingredient("salt",new BigDecimal(1),tableSpoonUom));
-        guacRecipe.getIngredients().add(new Ingredient("minced red onion",new BigDecimal(2),dashUom));
-        guacRecipe.getIngredients().add(new Ingredient("ripe tomatos",new BigDecimal(".5"),eachUom));
+        guacRecipe.addIngredient(new Ingredient("ripe avocados",new BigDecimal(2),eachUom));
+        guacRecipe.addIngredient(new Ingredient("salt",new BigDecimal(1),tableSpoonUom));
+        guacRecipe.addIngredient(new Ingredient("minced red onion",new BigDecimal(2),dashUom));
+        guacRecipe.addIngredient(new Ingredient("ripe tomatos",new BigDecimal(".5"),eachUom));
 
 
         guacRecipe.getCategories().add(americanCategory);
