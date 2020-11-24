@@ -4,7 +4,9 @@ import miri.recipe.app.domain.Category;
 import miri.recipe.app.domain.UnitOfMeasure;
 import miri.recipe.app.repositories.CategoryRepository;
 import miri.recipe.app.repositories.UnitOfMeasureRepository;
+import miri.recipe.app.services.RecipeSevice;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
@@ -12,22 +14,18 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    private final RecipeSevice recipeSevice;
+
+    public IndexController(RecipeSevice recipeSevice) {
+        this.recipeSevice=  recipeSevice;
     }
 
     @GetMapping({"","/","/index"})
-    public String getIndexPage(){
+    public String getIndexPage(Model model){
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+        model.addAttribute("recipes",recipeSevice.getRecipes());
 
-        System.out.println("Cat Id is "+ categoryOptional.get().getId());
-        System.out.println("UOM ID is "+ unitOfMeasureOptional.get().getId());
         return "index";
     }
 
