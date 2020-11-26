@@ -1,5 +1,6 @@
 package miri.recipe.app.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import miri.recipe.app.domain.Category;
 import miri.recipe.app.domain.UnitOfMeasure;
 import miri.recipe.app.repositories.CategoryRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -24,6 +26,7 @@ public class IndexController {
     @GetMapping({"","/","/index"})
     public String getIndexPage(Model model){
 
+        log.debug("Getting index page");
         model.addAttribute("recipes",recipeSevice.getRecipes());
 
         return "index";
