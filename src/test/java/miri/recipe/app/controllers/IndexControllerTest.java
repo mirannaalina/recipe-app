@@ -9,6 +9,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mock.*;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 
@@ -17,6 +20,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 class IndexControllerTest {
 
@@ -35,6 +39,14 @@ class IndexControllerTest {
     }
 
     @Test
+    public void testMockMVC()throws Exception{
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+
+        mockMvc.perform(get("/"));
+
+    }
+
+    @Test
     void getIndexPage() {
 
         Set<Recipe> recipes = new HashSet<>();
@@ -48,6 +60,8 @@ class IndexControllerTest {
         String viewName = controller.getIndexPage(model);
 
         assertEquals("index",viewName);
+
+
 
 
 
