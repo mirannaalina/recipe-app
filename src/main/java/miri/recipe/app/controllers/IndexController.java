@@ -1,33 +1,27 @@
 package miri.recipe.app.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import miri.recipe.app.domain.Category;
-import miri.recipe.app.domain.UnitOfMeasure;
-import miri.recipe.app.repositories.CategoryRepository;
-import miri.recipe.app.repositories.UnitOfMeasureRepository;
-import miri.recipe.app.services.RecipeSevice;
+import miri.recipe.app.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Optional;
 
 @Slf4j
 @Controller
 public class IndexController {
 
 
-    private final RecipeSevice recipeSevice;
+    private final RecipeService recipeService;
 
-    public IndexController(RecipeSevice recipeSevice) {
-        this.recipeSevice=  recipeSevice;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @GetMapping({"","/","/index"})
     public String getIndexPage(Model model){
 
         log.debug("Getting index page");
-        model.addAttribute("recipes",recipeSevice.getRecipes());
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";
     }

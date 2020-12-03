@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public interface RecipeSevice{
+public interface RecipeService {
 
     Set<Recipe> getRecipes();
 
