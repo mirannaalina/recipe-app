@@ -17,7 +17,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.ExpectedCount.never;
-import static org.junit.Assert.*;
 class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
