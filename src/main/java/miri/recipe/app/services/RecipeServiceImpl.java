@@ -1,6 +1,9 @@
 package miri.recipe.app.services;
 
 import lombok.extern.slf4j.Slf4j;
+import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.converters.RecipeCommandToRecipe;
+import miri.recipe.app.converters.RecipeToRecipeCommand;
 import miri.recipe.app.domain.Recipe;
 import miri.recipe.app.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,14 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -39,6 +46,15 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipesCommand saveRecipeCommand(RecipesCommand command){
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId: "+ savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 
 
