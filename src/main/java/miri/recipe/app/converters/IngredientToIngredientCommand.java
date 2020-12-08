@@ -12,7 +12,12 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
 
     @Nullable
     @Override
-    public IngredientCommand convert(Ingredient ingredient) {
-        return null;
+    public IngredientCommand convert(Ingredient source) {
+        final IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setId(source.getId());
+        ingredientCommand.setAmount(source.getAmount());
+        ingredientCommand.setDescription(source.getDescription());
+        ingredientCommand.setRecipe(source.getRecipe());
+        return ingredientCommand;
     }
 }

@@ -12,7 +12,17 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipesCommand> 
 
     @Nullable
     @Override
-    public RecipesCommand convert(Recipe recipe) {
-        return null;
+    public RecipesCommand convert(Recipe source) {
+
+        final RecipesCommand recipesCommand =  new RecipesCommand();
+        recipesCommand.setId(source.getId());
+        recipesCommand.setDescription(source.getDescription());
+        recipesCommand.setPrepTime(source.getPrepTime());
+        recipesCommand.setCookTime(source.getCookTime());
+        recipesCommand.setServings(source.getServings());
+        recipesCommand.setSource(source.getSource());
+        recipesCommand.setUrl(source.getUrl());
+
+        return recipesCommand;
     }
 }

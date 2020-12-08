@@ -12,7 +12,11 @@ public class CategorytoCategoryCommand implements Converter<Category, CategoryCo
 
     @Nullable
     @Override
-    public CategoryCommand convert(Category category) {
-        return null;
+    public CategoryCommand convert(Category source) {
+        final CategoryCommand categoryCommand= new CategoryCommand();
+        categoryCommand.setId(source.getId());
+        categoryCommand.setDescription(source.getDescription());
+
+        return categoryCommand;
     }
 }
