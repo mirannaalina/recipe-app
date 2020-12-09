@@ -1,8 +1,7 @@
 package miri.recipe.app.controllers;
 
-import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.services.RecipeService;
-import miri.recipe.app.services.RecipeServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class RecipeController {
 
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
-        model.addAttribute("recipe",new RecipesCommand());
+        model.addAttribute("recipe",new RecipeCommand());
         return "/recipe/recipeform";
     }
 
@@ -35,9 +34,9 @@ public class RecipeController {
         return "recipe/recipeform";
     }
 
-    @PostMapping("recipe")
-    public String saveOrUpdate(@ModelAttribute RecipesCommand command){
-        RecipesCommand savedCommand= recipeService.saveRecipeCommand(command);
+    @PostMapping("/recipe/")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+        RecipeCommand savedCommand= recipeService.saveRecipeCommand(command);
 
         return "redirect:/recipe/show/" + savedCommand.getId();
     }

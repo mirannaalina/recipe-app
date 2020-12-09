@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RecipesCommand {
+public class RecipeCommand {
 
     private Long id;
     private String description;

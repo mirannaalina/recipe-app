@@ -1,6 +1,6 @@
 package miri.recipe.app.controllers;
 
-import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.domain.Recipe;
 import miri.recipe.app.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -58,7 +57,7 @@ class RecipeControllerTest {
     @Test
     public void testPostNewRecipeForm() throws Exception{
 
-        RecipesCommand command = new RecipesCommand();
+        RecipeCommand command = new RecipeCommand();
         command.setId(2L);
 
         when(recipeService.saveRecipeCommand(any())).thenReturn(command);
@@ -74,7 +73,7 @@ class RecipeControllerTest {
 
     @Test
     public void testGetUpdateView() throws Exception{
-        RecipesCommand command = new RecipesCommand();
+        RecipeCommand command = new RecipeCommand();
         command.setId(2L);
 
         //when(recipeService.findById(anyLong())).thenReturn(command);

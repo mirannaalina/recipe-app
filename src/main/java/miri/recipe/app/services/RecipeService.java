@@ -1,9 +1,7 @@
 package miri.recipe.app.services;
 
-import com.sun.org.apache.regexp.internal.RE;
-import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.domain.Recipe;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -15,7 +13,10 @@ public interface RecipeService {
 
     Recipe findById(Long l);
 
-    RecipesCommand saveRecipeCommand(RecipesCommand command);
+    RecipeCommand findCommandById(Long l);
 
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
+
+    void deleteById(Long idToDelete);
 
 }

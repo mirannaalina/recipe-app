@@ -1,14 +1,14 @@
 package miri.recipe.app.converters;
 
 import lombok.Synchronized;
-import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.domain.Recipe;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RecipeCommandToRecipe implements Converter<RecipesCommand, Recipe> {
+public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
     private final CategoryCommandToCategory categoryConverter;
     private final IngredientCommandToIngredient ingredientConverter;
@@ -23,7 +23,7 @@ public class RecipeCommandToRecipe implements Converter<RecipesCommand, Recipe> 
     @Synchronized
     @Nullable
     @Override
-    public Recipe convert(RecipesCommand source) {
+    public Recipe convert(RecipeCommand source) {
 
         final Recipe recipe= new Recipe();
         recipe.setId(source.getId());

@@ -1,6 +1,6 @@
 package miri.recipe.app.converters;
 
-import miri.recipe.app.commands.RecipesCommand;
+import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.domain.Recipe;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class RecipeToRecipeCommand implements Converter<Recipe, RecipesCommand> {
+public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
 
     private final CategorytoCategoryCommand categoryConveter;
     private final IngredientToIngredientCommand ingredientConverter;
@@ -23,9 +23,9 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipesCommand> 
 
     @Nullable
     @Override
-    public RecipesCommand convert(Recipe source) {
+    public RecipeCommand convert(Recipe source) {
 
-        final RecipesCommand command = new RecipesCommand();
+        final RecipeCommand command = new RecipeCommand();
         command.setId(source.getId());
         command.setCookTime(source.getCookTime());
         command.setPrepTime(source.getPrepTime());
