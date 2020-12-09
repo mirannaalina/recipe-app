@@ -10,19 +10,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipesCommand> {
 
+    private final CategorytoCategoryCommand categoryConveter;
+    private final IngredientToIngredientCommand ingredientConverter;
+    private final NotesToNotesCommand notesConverter;
+
+    public RecipeToRecipeCommand(CategorytoCategoryCommand categoryConveter, IngredientToIngredientCommand ingredientConverter,
+                                 NotesToNotesCommand notesConverter) {
+        this.categoryConveter = categoryConveter;
+        this.ingredientConverter = ingredientConverter;
+        this.notesConverter = notesConverter;
+    }
+
     @Nullable
     @Override
     public RecipesCommand convert(Recipe source) {
 
-        final RecipesCommand recipesCommand =  new RecipesCommand();
-        recipesCommand.setId(source.getId());
-        recipesCommand.setDescription(source.getDescription());
-        recipesCommand.setPrepTime(source.getPrepTime());
-        recipesCommand.setCookTime(source.getCookTime());
-        recipesCommand.setServings(source.getServings());
-        recipesCommand.setSource(source.getSource());
-        recipesCommand.setUrl(source.getUrl());
-
-        return recipesCommand;
+        final RecipesCommand command = new RecipesCommand();
+        command.setId(source.getId());
+        command.setCookTime(source.getCookTime());
+        command.setPrepTime(source.getPrepTime());
+        command.setDescription(source.getDescription());
+        command.setDifficulty(source.getDifficulty());
+        command.setDirections(source.getDirections());
+        command.setServings(source.getServings());
+        command.setSource(source.getSource());
+        command.setUrl(source.getUrl());
+        //command.setImage(source.getImage());
+        command.setNotes(notesConverter.convert(source.getNotes()));
+        return command;
     }
 }

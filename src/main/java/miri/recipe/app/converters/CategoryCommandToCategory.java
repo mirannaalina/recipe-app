@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class CategoryCommandToCategory implements Converter<Category,CategoryCommand> {
+public class CategoryCommandToCategory implements Converter<CategoryCommand,Category> {
 
     @Nullable
     @Override
-    public CategoryCommand convert(Category source) {
-        final CategoryCommand categoryCommand =  new CategoryCommand();
-        categoryCommand.setId(source.getId());
-        categoryCommand.setDescription(source.getDescription());
-        return categoryCommand;
+    public Category convert(CategoryCommand source) {
+        final Category category =  new Category();
+        category.setId(source.getId());
+        category.setDescription(source.getDescription());
+        return category;
     }
 }

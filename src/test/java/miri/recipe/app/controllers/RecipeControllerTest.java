@@ -72,4 +72,12 @@ class RecipeControllerTest {
                 .andExpect(view().name("redirect:/recipe/show/2"));
     }
 
+    @Test
+    public void testGetUpdateView() throws Exception{
+        RecipesCommand command = new RecipesCommand();
+        command.setId(2L);
+
+        //when(recipeService.findById(anyLong())).thenReturn(command);
+    }
+
 }

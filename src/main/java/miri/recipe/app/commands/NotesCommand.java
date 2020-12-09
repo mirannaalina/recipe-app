@@ -12,7 +12,6 @@ import miri.recipe.app.domain.Recipe;
 public class NotesCommand {
 
     private Long id;
-    private Recipe recipe;
     private String recipeNotes;
 }
 

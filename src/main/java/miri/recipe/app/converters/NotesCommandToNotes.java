@@ -15,9 +15,9 @@ public class NotesCommandToNotes implements Converter<NotesCommand, Notes> {
     @Override
     public Notes convert(NotesCommand source) {
 
-        final Notes notes=new Notes();
+        final Notes notes = new Notes();
         notes.setId(source.getId());
-        notes.setRecipe(source.getRecipe());
+        notes.setRecipeNotes(source.getRecipeNotes());
         return notes;
     }
 }
