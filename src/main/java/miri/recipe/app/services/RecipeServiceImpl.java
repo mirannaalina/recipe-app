@@ -5,6 +5,7 @@ import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.converters.RecipeCommandToRecipe;
 import miri.recipe.app.converters.RecipeToRecipeCommand;
 import miri.recipe.app.domain.Recipe;
+import miri.recipe.app.exceptions.NotFoundException;
 import miri.recipe.app.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if(!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe not found");
+            throw new NotFoundException("Recipe not found");
         }
 
         return recipeOptional.get();
