@@ -2,6 +2,7 @@ package miri.recipe.app.controllers;
 
 import miri.recipe.app.commands.RecipeCommand;
 import miri.recipe.app.domain.Recipe;
+import miri.recipe.app.exceptions.NotFoundException;
 import miri.recipe.app.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,8 @@ class RecipeControllerTest {
 
     RecipeController controller;
 
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+
 
     @BeforeEach
     void setUp() throws Exception{
@@ -52,6 +55,17 @@ class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void testGetRecipeNumberFormatException() throws Exception{
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/show/1"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
+
     }
 
     @Test
